@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rhythm by Palmera — Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #0e2a22;
+    --green-mid: #163a2e;
+    --green-line: rgba(200,162,75,0.25);
+    --gold: #c8a24b;
+    --gold-light: #e6cf94;
+    --cream: #f3ecd9;
+    --cream-dim: #cdbf9a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--green-dark);
+    color: var(--cream);
+    font-family: 'EB Garamond', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== COVER ===== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 40px 24px;
+    background:
+      radial-gradient(ellipse at 50% 30%, #1b4335 0%, var(--green-dark) 65%);
+    overflow: hidden;
+  }
+
+  .cover::before, .cover::after {
+    content: '';
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border: 1px solid var(--gold);
+    opacity: 0.4;
+  }
+  .cover::before { top: 28px; left: 28px; border-right: none; border-bottom: none; }
+  .cover::after  { bottom: 28px; right: 28px; border-left: none; border-top: none; }
+
+  .cover-eyebrow {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 6px;
+    font-size: 12px;
+    color: var(--gold);
+    margin-bottom: 22px;
+    text-transform: uppercase;
+  }
+
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(48px, 11vw, 84px);
+    color: var(--cream);
+    line-height: 1;
+  }
+
+  .cover-sub {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(14px, 3vw, 20px);
+    letter-spacing: 8px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  .cover-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 34px 0;
+    opacity: 0.7;
+  }
+
+  .cover-menu-word {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    letter-spacing: 10px;
+    color: var(--cream-dim);
+    text-transform: uppercase;
+  }
+
+  .cover-scroll {
+    position: absolute;
+    bottom: 34px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--cream-dim);
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  /* ===== STICKY NAV ===== */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(14,42,34,0.96);
+    border-bottom: 1px solid var(--green-line);
+    backdrop-filter: blur(6px);
+  }
+  .nav-inner {
+    display: flex;
+    overflow-x: auto;
+    gap: 4px;
+    padding: 14px 16px;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav a {
+    flex: 0 0 auto;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    padding: 8px 14px;
+    border: 1px solid var(--green-line);
+    border-radius: 20px;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+  }
+  .nav a:hover, .nav a.active {
+    color: var(--green-dark);
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* ===== SECTION ===== */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 90px 24px 70px;
+    border-bottom: 1px solid var(--green-line);
+  }
+  .section:last-of-type { border-bottom: none; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .section-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(34px, 6vw, 52px);
+    color: var(--cream);
+    margin-top: 6px;
+  }
+  .section-header .rule {
+    width: 44px;
+    height: 1px;
+    background: var(--gold);
+    margin: 20px auto 0;
+    opacity: 0.7;
+  }
+
+  /* ===== DISH GRID ===== */
+  .dish-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px 56px;
+  }
+  @media (max-width: 640px) {
+    .dish-grid { grid-template-columns: 1fr; gap: 34px; }
+  }
+
+  .dish {
+    display: flex;
+    flex-direction: column;
+  }
+  .dish-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .dish-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 21px;
+    letter-spacing: 0.4px;
+    color: var(--cream);
+    text-transform: uppercase;
+  }
+  .dish-dots {
+    flex: 1;
+    border-bottom: 1px dotted var(--green-line);
+    margin: 0 8px 6px;
+    min-width: 20px;
+  }
+  .dish-price {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    color: var(--gold-light);
+    white-space: nowrap;
+  }
+  .dish-desc {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--cream-dim);
+    margin-top: 6px;
+  }
+
+  /* Feature dish (breakfast set) */
+  .feature-dish {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--green-line);
+  }
+  .feature-dish .dish-name { font-size: 26px; }
+  .feature-dish .dish-desc { font-size: 15px; }
+  .feature-dish .dish-price {
+    display: block;
+    margin-top: 14px;
+    font-size: 22px;
+  }
+
+  /* ===== ALLERGEN NOTICE ===== */
+  .allergen {
+    max-width: 640px;
+    margin: 10px auto 0;
+    text-align: center;
+    padding: 26px 20px;
+    border: 1px solid var(--green-line);
+    border-radius: 4px;
+  }
+  .allergen-title {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .allergen p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--cream-dim);
+  }
+  .allergen .priority {
+    margin-top: 8px;
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 70px 24px 90px;
+  }
+  .footer .script {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 34px;
+    color: var(--cream);
+  }
+  .footer .by {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eyebrow">Palmera Resort Wellness Spa</div>
+  <div class="cover-title">Rhythm</div>
+  <div class="cover-sub">Restaurant</div>
+  <div class="cover-rule"></div>
+  <div class="cover-menu-word">Menu</div>
+  <div class="cover-scroll">Scroll to explore</div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <a href="#breakfast">Breakfast</a>
+    <a href="#starters">Starters</a>
+    <a href="#soups">Soups</a>
+    <a href="#salads">Salads</a>
+    <a href="#bowl">Bowl</a>
+    <a href="#burger">Burger &amp; Wrap</a>
+    <a href="#pasta">Pasta</a>
+    <a href="#pizza">Pizza</a>
+    <a href="#mains">Main Courses</a>
+    <a href="#desserts">Desserts</a>
+  </div>
+</div>
+
+<!-- BREAKFAST -->
+<section class="section" id="breakfast">
+  <div class="section-header">
+    <div class="section-eyebrow">Rise & Shine</div>
+    <div class="section-title">Breakfast Favorites</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="feature-dish">
+    <div class="dish-name">Traditional Spread Breakfast</div>
+    <div class="dish-desc">Per person</div>
+    <div class="dish-price">₺1,250.00</div>
+  </div>
+
+  <div class="dish-grid">
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Pancakes</span><span class="dish-dots"></span><span class="dish-price">₺650.00</span></div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Menemen</span><span class="dish-dots"></span><span class="dish-price">₺500.00</span></div>
+      <div class="dish-desc">Eggs with tomato & pepper</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Scrambled Eggs</span><span class="dish-dots"></span><span class="dish-price">₺500.00</span></div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Eggs with Sucuk Sausage</span><span class="dish-dots"></span><span class="dish-price">₺500.00</span></div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Plain Omelette</span><span class="dish-dots"></span><span class="dish-price">₺400.00</span></div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Mixed Omelette</span><span class="dish-dots"></span><span class="dish-price">₺600.00</span></div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Fried Eggs</span><span class="dish-dots"></span><span class="dish-price">₺500.00</span></div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Bread Basket</span><span class="dish-dots"></span><span class="dish-price">₺600.00</span></div>
+    </div>
+  </div>
+
+  <div class="allergen">
+    <div class="allergen-title">Allergen Notice</div>
+    <p>Our products may contain allergens or sensitive ingredients. If you have allergies, special dietary preferences, or cannot consume a particular product, please inform our team before placing your order.</p>
+    <p class="priority">Your health is our priority.</p>
+  </div>
+</section>
+
+<!-- STARTERS -->
+<section class="section" id="starters">
+  <div class="section-header">
+    <div class="section-eyebrow">To Begin</div>
+    <div class="section-title">Starters</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="dish-grid">
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Cheese Platter</span><span class="dish-dots"></span><span class="dish-price">₺1,200.00</span></div>
+      <div class="dish-desc">4 types of cheese: Dor Blue, feta, cheddar, Parmesan with mint and walnuts</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Crispy Chicken Pieces</span><span class="dish-dots"></span><span class="dish-price">₺800.00</span></div>
+      <div class="dish-desc">7 crispy chicken pieces in our special breading, served with fries and dip sauce</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">French Fries</span><span class="dish-dots"></span><span class="dish-price">₺500.00</span></div>
+      <div class="dish-desc">Spoon-cut fries</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Sandwich</span><span class="dish-dots"></span><span class="dish-price">₺750.00</span></div>
+      <div class="dish-desc">Ciabatta, roast beef, butter, diced tomatoes, pesto sauce, arugula, caramelized onions, balsamic sauce</div>
+    </div>
+  </div>
+
+  <div class="allergen">
+    <div class="allergen-title">Allergen Notice</div>
+    <p>Our products may contain allergens or sensitive ingredients. If you have allergies, special dietary preferences, or cannot consume a particular product, please inform our team before placing your order.</p>
+    <p class="priority">Your health is our priority.</p>
+  </div>
+</section>
+
+<!-- SOUPS -->
+<section class="section" id="soups">
+  <div class="section-header">
+    <div class="section-eyebrow">Warm & Comforting</div>
+    <div class="section-title">Soups</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="dish-grid">
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Gazpacho</span><span class="dish-dots"></span><span class="dish-price">₺500.00</span></div>
+      <div class="dish-desc">Tomatoes, bell peppers, cucumber, parsley, garlic, olive oil, shrimp, pesto bruschetta</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Lentil Soup</span><span class="dish-dots"></span><span class="dish-price">₺450.00</span></div>
+      <div class="dish-desc">Lentils, potatoes, tomatoes, onions, garlic, spices. Served with pide, lemon, and olives</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Creamy Vegetable Soup</span><span class="dish-dots"></span><span class="dish-price">₺500.00</span></div>
+      <div class="dish-desc">Creamy green vegetable soup with broccoli, green peas, and seasonal fresh vegetables, cream, and croutons</div>
+    </div>
+  </div>
+
+  <div class="allergen">
+    <div class="allergen-title">Allergen Notice</div>
+    <p>Our products may contain allergens or sensitive ingredients. If you have allergies, special dietary preferences, or cannot consume a particular product, please inform our team before placing your order.</p>
+    <p class="priority">Your health is our priority.</p>
+  </div>
+</section>
+
+<!-- SALADS -->
+<section class="section" id="salads">
+  <div class="section-header">
+    <div class="section-eyebrow">Signature</div>
+    <div class="section-title">Salads</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="dish-grid">
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Greek Salad</span><span class="dish-dots"></span><span class="dish-price">₺700.00</span></div>
+      <div class="dish-desc">Feta, tomatoes, cucumber, bell pepper, oregano, red onion, mixed salad, olive oil, balsamic vinegar</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Salmon Salad</span><span class="dish-dots"></span><span class="dish-price">₺1,500.00</span></div>
+      <div class="dish-desc">Salmon – 180 g, mixed salad, avocado, cucumber, lemon, orange dressing, and grissini sticks</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Roast Beef Salad</span><span class="dish-dots"></span><span class="dish-price">₺950.00</span></div>
+      <div class="dish-desc">Roast beef on a bed of mixed salads, with roasted bell peppers and red onions</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Warm Seafood Salad</span><span class="dish-dots"></span><span class="dish-price">₺1,100.00</span></div>
+      <div class="dish-desc">Shrimp, squid, potatoes, cherry tomatoes, artichokes, orange dressing</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Grilled Chicken Caesar Salad</span><span class="dish-dots"></span><span class="dish-price">₺800.00</span></div>
+      <div class="dish-desc">Iceberg lettuce, cherry tomato, croutons, parmesan, caesar dressing, sous-vide grilled chicken and grissini</div>
+    </div>
+  </div>
+
+  <div class="allergen">
+    <div class="allergen-title">Allergen Notice</div>
+    <p>Our products may contain allergens or sensitive ingredients. If you have allergies, special dietary preferences, or cannot consume a particular product, please inform our team before placing your order.</p>
+    <p class="priority">Your health is our priority.</p>
+  </div>
+</section>
+
+<!-- BOWL -->
+<section class="section" id="bowl">
+  <div class="section-header">
+    <div class="section-eyebrow">Nourishing</div>
+    <div class="section-title">Bowl</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="dish-grid">
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Salmon Bowl</span><span class="dish-dots"></span><span class="dish-price">₺1,050.00</span></div>
+      <div class="dish-desc">Seasonal greens, rocket, parsley, curly lettuce, mint, lolo rosso, cucumber, cherry tomato, pineapple, avocado, quinoa, bulgur, green lentils, green apple, pickled onion, grilled salmon, olive oil and lemon dressing</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Rhythm Steak Bowl</span><span class="dish-dots"></span><span class="dish-price">₺1,050.00</span></div>
+      <div class="dish-desc">Seasonal greens, avocado, quinoa, bulgur, green lentils, cucumber, cherry tomatoes, pineapple, green apple, pickled onion, grilled steak, olive oil & lemon dressing</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Grilled Chicken Bowl</span><span class="dish-dots"></span><span class="dish-price">₺1,050.00</span></div>
+      <div class="dish-desc">Seasonal greens, avocado, quinoa, bulgur, green lentils, cucumber, cherry tomatoes, pineapple, green apple, pickled onion, grilled chicken, olive oil & lemon dressing</div>
+    </div>
+  </div>
+
+  <div class="allergen">
+    <div class="allergen-title">Allergen Notice</div>
+    <p>Our products may contain allergens or sensitive ingredients. If you have allergies, special dietary preferences, or cannot consume a particular product, please inform our team before placing your order.</p>
+    <p class="priority">Your health is our priority.</p>
+  </div>
+</section>
+
+<!-- BURGER & WRAP -->
+<section class="section" id="burger">
+  <div class="section-header">
+    <div class="section-eyebrow">Handheld</div>
+    <div class="section-title">Burger &amp; Wrap</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="dish-grid">
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Rhythm Cheddar Burger</span><span class="dish-dots"></span><span class="dish-price">₺800.00</span></div>
+      <div class="dish-desc">Served on a homemade brioche bun with 150 g of beef short rib, cheddar cheese, tomato, lettuce, pickles, caramelized onions, french fries, 3 onion rings, and a dipping sauce</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Chicken Caesar Wrap</span><span class="dish-dots"></span><span class="dish-price">₺700.00</span></div>
+      <div class="dish-desc">Sous-vide-cooked grilled chicken, iceberg lettuce, cherry tomatoes, Parmesan cheese, and Caesar dressing wrapped in lavash bread; served with french fries and a dipping sauce</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Dana Burger (Kids)</span><span class="dish-dots"></span><span class="dish-price">₺500.00</span></div>
+      <div class="dish-desc">Served with 80 g of dana köfte, tomatoes, lettuce, pickles, dip sauce, and french fries</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Crispy Chicken (Kids)</span><span class="dish-dots"></span><span class="dish-price">₺450.00</span></div>
+      <div class="dish-desc">Served with 4 pieces of crispy chicken and french fries</div>
+    </div>
+  </div>
+
+  <div class="allergen">
+    <div class="allergen-title">Allergen Notice</div>
+    <p>Our products may contain allergens or sensitive ingredients. If you have allergies, special dietary preferences, or cannot consume a particular product, please inform our team before placing your order.</p>
+    <p class="priority">Your health is our priority.</p>
+  </div>
+</section>
+
+<!-- PASTA -->
+<section class="section" id="pasta">
+  <div class="section-header">
+    <div class="section-eyebrow">Italian</div>
+    <div class="section-title">Pasta</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="dish-grid">
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Fettuccine Alfredo</span><span class="dish-dots"></span><span class="dish-price">₺750.00</span></div>
+      <div class="dish-desc">200g fettuccine, 120g sous-vide chicken, sun-dried tomato, mushroom, cream, salt, pepper and parmesan</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Spaghetti Bolognese</span><span class="dish-dots"></span><span class="dish-price">₺750.00</span></div>
+      <div class="dish-desc">200g spaghetti, 100g bolognese mince, tomato sauce, salt, black pepper, paprika and parmesan</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Shrimp Fettuccine</span><span class="dish-dots"></span><span class="dish-price">₺900.00</span></div>
+      <div class="dish-desc">Fettuccine, shrimp, sun-dried tomato, cream, parmesan, garlic, parsley</div>
+    </div>
+  </div>
+
+  <div class="allergen">
+    <div class="allergen-title">Allergen Notice</div>
+    <p>Our products may contain allergens or sensitive ingredients. If you have allergies, special dietary preferences, or cannot consume a particular product, please inform our team before placing your order.</p>
+    <p class="priority">Your health is our priority.</p>
+  </div>
+</section>
+
+<!-- PIZZA -->
+<section class="section" id="pizza">
+  <div class="section-header">
+    <div class="section-eyebrow">Wood-Fired</div>
+    <div class="section-title">Pizza</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="dish-grid">
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Margherita</span><span class="dish-dots"></span><span class="dish-price">₺700.00</span></div>
+      <div class="dish-desc">Tomato sauce, cheese, basil</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">4 Cheese with Pear</span><span class="dish-dots"></span><span class="dish-price">₺800.00</span></div>
+      <div class="dish-desc">4 cheeses: white cheese, parmesan, mozzarella, gorgonzola, pear, honey</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Pepperoni</span><span class="dish-dots"></span><span class="dish-price">₺900.00</span></div>
+      <div class="dish-desc">Tomato sauce, mozzarella, pepperoni</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Palmera Meat Pizza</span><span class="dish-dots"></span><span class="dish-price">₺900.00</span></div>
+      <div class="dish-desc">Garlic, beef, olives, bell pepper, mozzarella, hellim, spices — sumac, thyme, nasharab and tomato sauce</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Cyprus Pizza</span><span class="dish-dots"></span><span class="dish-price">₺900.00</span></div>
+      <div class="dish-desc">Tomato sauce, olives, mozzarella, hellim, cherry tomato, artichoke, rocket</div>
+    </div>
+  </div>
+
+  <div class="allergen">
+    <div class="allergen-title">Allergen Notice</div>
+    <p>Our products may contain allergens or sensitive ingredients. If you have allergies, special dietary preferences, or cannot consume a particular product, please inform our team before placing your order.</p>
+    <p class="priority">Your health is our priority.</p>
+  </div>
+</section>
+
+<!-- MAIN COURSES -->
+<section class="section" id="mains">
+  <div class="section-header">
+    <div class="section-eyebrow">The Table</div>
+    <div class="section-title">Main Courses</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="dish-grid">
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Beef Tenderloin Medallions</span><span class="dish-dots"></span><span class="dish-price">₺1,750.00</span></div>
+      <div class="dish-desc">2 beef tenderloin medallions (180–200g), mashed potato, steamed asparagus, broccoli, mushroom, grilled cherry tomato and demi-glace sauce</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Octopus on Black Rice</span><span class="dish-dots"></span><span class="dish-price">₺1,200.00</span></div>
+      <div class="dish-desc">Octopus sous-vide poached then grilled, served with black rice in ginger-garlic sauce and daikon radish</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Grilled Chicken Breast</span><span class="dish-dots"></span><span class="dish-price">₺1,200.00</span></div>
+      <div class="dish-desc">200–220g sous-vide grilled chicken breast, mashed potato and steamed vegetables</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Grilled Salmon with Orange</span><span class="dish-dots"></span><span class="dish-price">₺1,500.00</span></div>
+      <div class="dish-desc">190–200g salmon, mashed potato, carrot, broccoli, mushroom, asparagus, grilled lemon and wine-orange sauce</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Lamb Chops</span><span class="dish-dots"></span><span class="dish-price">₺1,600.00</span></div>
+      <div class="dish-desc">Rack of lamb (3 pcs), mashed potatoes, roasted black carrots, wine-poached pear, and demi-glace sauce</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Köfte (Meatballs)</span><span class="dish-dots"></span><span class="dish-price">₺1,000.00</span></div>
+      <div class="dish-desc">4 beef köfte totalling 180g, sumac onion, tomato, pepper, parsley and tortilla</div>
+    </div>
+  </div>
+
+  <div class="allergen">
+    <div class="allergen-title">Allergen Notice</div>
+    <p>Our products may contain allergens or sensitive ingredients. If you have allergies, special dietary preferences, or cannot consume a particular product, please inform our team before placing your order.</p>
+    <p class="priority">Your health is our priority.</p>
+  </div>
+</section>
+
+<!-- DESSERTS -->
+<section class="section" id="desserts">
+  <div class="section-header">
+    <div class="section-eyebrow">To Finish</div>
+    <div class="section-title">Desserts</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="dish-grid">
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Brownie</span><span class="dish-dots"></span><span class="dish-price">₺500.00</span></div>
+      <div class="dish-desc">Dense dark Belgian chocolate brownie served with ice cream, walnuts and chocolate sauce</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Soufflé</span><span class="dish-dots"></span><span class="dish-price">₺550.00</span></div>
+      <div class="dish-desc">Molten dark Belgian chocolate soufflé with icing sugar and ice cream</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Fruit Platter</span><span class="dish-dots"></span><span class="dish-price">₺650.00</span></div>
+      <div class="dish-desc">Prepared with seasonal fruits</div>
+    </div>
+    <div class="dish">
+      <div class="dish-top"><span class="dish-name">Panna Cotta</span><span class="dish-dots"></span><span class="dish-price">₺450.00</span></div>
+      <div class="dish-desc">Milk, cream, sugar, served with tropical fruits</div>
+    </div>
+  </div>
+
+  <div class="allergen">
+    <div class="allergen-title">Allergen Notice</div>
+    <p>Our products may contain allergens or sensitive ingredients. If you have allergies, special dietary preferences, or cannot consume a particular product, please inform our team before placing your order.</p>
+    <p class="priority">Your health is our priority.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="script">Rhythm</div>
+  <div class="by">by Palmera</div>
+</div>
+
+<script>
+  // Highlight active nav link on scroll
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= 120 && rect.bottom > 120) current = sec.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+
+</body>
+</html>
